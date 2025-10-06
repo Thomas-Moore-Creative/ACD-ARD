@@ -1,29 +1,7 @@
-# Collections of related datasets to process together
-# Groups datasets into logical processing units
-
 collections:
-  nci_temperature:
-    description: "NCI temperature datasets collection"
-    datasets:
-      - example_temp_daily
-    input_path: /g/data/climate/netcdf/temp
-    priority: high
-    
-  nci_precipitation:
-    description: "NCI precipitation datasets collection"
-    datasets:
-      - example_precip_monthly
-    input_path: /g/data/climate/netcdf/precip
-    priority: medium
-  
-  australian_climate_reanalysis:
-    description: "Complete Australian climate reanalysis"
-    datasets:
-      - example_temp_daily
-      - example_precip_monthly
-    input_path: /g/data/climate/netcdf
-    priority: high
-    tags:
-      - australia
-      - reanalysis
-      - complete
+- name: synthetic
+  dataset: SYNTH
+  variables:
+  - tas
+  - pr
+  pattern: '{variable}/*.nc'

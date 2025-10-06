@@ -1,28 +1,4 @@
-# Dataset definitions for NetCDF climate archives
-# Define datasets to be processed through the pipeline
-
-datasets:
-  example_temp_daily:
-    description: "Example daily temperature dataset"
-    input_path: /g/data/climate/netcdf/temp/daily
-    variables:
-      - temp
-      - temp_min
-      - temp_max
-    time_range:
-      start: "1990-01-01"
-      end: "2020-12-31"
-    spatial_extent:
-      lat_min: -45
-      lat_max: -10
-      lon_min: 110
-      lon_max: 155
-    
-  example_precip_monthly:
-    description: "Example monthly precipitation dataset"
-    input_path: /g/data/climate/netcdf/precip/monthly
-    variables:
-      - precip
-    time_range:
-      start: "1990-01-01"
-      end: "2020-12-31"
+roots:
+  SYNTH: /scratch/xv83/tm4888/tmp/pytest-of-tm4888/pytest-1/test_smoke0/inputs
+engine:
+  SYNTH: h5netcdf

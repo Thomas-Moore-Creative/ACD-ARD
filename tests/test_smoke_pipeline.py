@@ -55,9 +55,7 @@ def test_smoke(tmp_path):
             }
         ]
     }
-    Path("config/collections.yml").write_text(
-        yaml.safe_dump(collections, sort_keys=False)
-    )
+    Path("config/collections.yml").write_text(yaml.safe_dump(collections, sort_keys=False))
 
     # ----- 3) run the pipeline -----
     check_call(["acd-manifest", "--collection", "synthetic"])
@@ -80,4 +78,3 @@ def test_smoke(tmp_path):
     ds = xr.open_zarr(z, consolidated=True)
     assert ds.tas.shape == (3, 2, 3)
     _ = float(ds.tas.mean().compute())  # tiny compute to prove stack works
-

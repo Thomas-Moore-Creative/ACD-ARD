@@ -17,38 +17,26 @@ from acd.core import load_config, setup_dask_cluster
 
 @click.command()
 @click.option(
-    '--input', '-i',
-    'input_store',
+    "--input",
+    "-i",
+    "input_store",
     required=True,
     type=click.Path(exists=True, path_type=Path),
-    help='Input Zarr store path'
+    help="Input Zarr store path",
 )
 @click.option(
-    '--output', '-o',
-    type=click.Path(path_type=Path),
-    help='Output rechunked Zarr store path'
+    "--output", "-o", type=click.Path(path_type=Path), help="Output rechunked Zarr store path"
 )
+@click.option("--chunks-config", default="default", help="Chunk configuration name from chunks.yml")
 @click.option(
-    '--chunks-config',
-    default='default',
-    help='Chunk configuration name from chunks.yml'
+    "--cluster-type",
+    type=click.Choice(["pbs", "slurm", "local"]),
+    default="local",
+    help="Dask cluster type",
 )
+@click.option("--workers", type=int, default=4, help="Number of workers")
 @click.option(
-    '--cluster-type',
-    type=click.Choice(['pbs', 'slurm', 'local']),
-    default='local',
-    help='Dask cluster type'
-)
-@click.option(
-    '--workers',
-    type=int,
-    default=4,
-    help='Number of workers'
-)
-@click.option(
-    '--temp-store',
-    type=click.Path(path_type=Path),
-    help='Temporary store path for rechunking'
+    "--temp-store", type=click.Path(path_type=Path), help="Temporary store path for rechunking"
 )
 @common_options
 def main(
@@ -61,30 +49,30 @@ def main(
     """
     try:
         # Load configuration
-        chunks_cfg = load_config('chunks', config_dir)
-        paths_config = load_config('paths', config_dir)
+        chunks_cfg = load_config("chunks", config_dir)
+        paths_config = load_config("paths", config_dir)
 
         if verbose:
             click.echo(f"Input store: {input_store}")
             click.echo(f"Chunk configuration: {chunks_config}")
 
         # Get chunk configuration
-        if chunks_config not in chunks_cfg.get('chunk_configs', {}):
+        if chunks_config not in chunks_cfg.get("chunk_configs", {}):
             click.echo(f"Error: Chunk config '{chunks_config}' not found", err=True)
             sys.exit(1)
 
-        target_chunks = chunks_cfg['chunk_configs'][chunks_config]
+        target_chunks = chunks_cfg["chunk_configs"][chunks_config]
 
         # Determine output path
         if output is None:
-            rechunked_path = paths_config.get('rechunked_zarr_path', './data/rechunked_zarr')
+            rechunked_path = paths_config.get("rechunked_zarr_path", "./data/rechunked_zarr")
             output = Path(rechunked_path) / input_store.name
         else:
             output = Path(output)
 
         # Determine temp store path
         if temp_store is None:
-            temp_store = Path(paths_config.get('temp_path', './data/temp')) / 'rechunk_temp'
+            temp_store = Path(paths_config.get("temp_path", "./data/temp")) / "rechunk_temp"
         else:
             temp_store = Path(temp_store)
 
@@ -93,10 +81,10 @@ def main(
             click.echo(f"Temp store: {temp_store}")
 
         # Setup Dask cluster if not local
-        if cluster_type != 'local':
+        if cluster_type != "local":
             if verbose:
                 click.echo(f"Setting up {cluster_type.upper()} cluster...")
-            cluster = setup_dask_cluster(cluster_type, cores=1, memory='4GB')
+            cluster = setup_dask_cluster(cluster_type, cores=1, memory="4GB")
             cluster.scale(workers)
             client = cluster.get_client()
             if verbose:
@@ -114,14 +102,14 @@ def main(
         temp_store.parent.mkdir(parents=True, exist_ok=True)
 
         # Perform rechunking
-        max_mem = chunks_cfg.get('max_mem', '2GB')
+        max_mem = chunks_cfg.get("max_mem", "2GB")
 
         rechunk_plan = rechunk(
             source=input_store,
             target_chunks=target_chunks,
             max_mem=max_mem,
             target_store=str(output),
-            temp_store=str(temp_store)
+            temp_store=str(temp_store),
         )
 
         if verbose:
@@ -131,7 +119,7 @@ def main(
 
         click.echo(f"Rechunked Zarr store created: {output}")
 
-        if cluster_type != 'local':
+        if cluster_type != "local":
             client.close()
             cluster.close()
 
@@ -142,5 +130,5 @@ def main(
         sys.exit(1)
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()

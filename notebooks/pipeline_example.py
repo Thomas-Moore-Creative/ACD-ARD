@@ -33,18 +33,18 @@ print(f"Chunk config: {chunk_config}")
 # Load all configurations
 config_path = Path(config_dir)
 
-collections_config = load_config('collections', config_path)
-datasets_config = load_config('datasets', config_path)
-chunks_config = load_config('chunks', config_path)
-paths_config = load_config('paths', config_path)
-parameters_config = load_config('parameters', config_path)
+collections_config = load_config("collections", config_path)
+datasets_config = load_config("datasets", config_path)
+chunks_config = load_config("chunks", config_path)
+paths_config = load_config("paths", config_path)
+parameters_config = load_config("parameters", config_path)
 
 print("\nConfigurations loaded successfully")
 
 # %%
 # Display collection info
-if collection_name in collections_config.get('collections', {}):
-    collection_info = collections_config['collections'][collection_name]
+if collection_name in collections_config.get("collections", {}):
+    collection_info = collections_config["collections"][collection_name]
     print(f"\nCollection: {collection_info.get('description', 'N/A')}")
     print(f"Datasets in collection: {collection_info.get('datasets', [])}")
 else:
@@ -52,8 +52,8 @@ else:
 
 # %%
 # Display dataset info
-if dataset_name in datasets_config.get('datasets', {}):
-    dataset_info = datasets_config['datasets'][dataset_name]
+if dataset_name in datasets_config.get("datasets", {}):
+    dataset_info = datasets_config["datasets"][dataset_name]
     print(f"\nDataset: {dataset_info.get('description', 'N/A')}")
     print(f"Variables: {dataset_info.get('variables', [])}")
     print(f"Time range: {dataset_info.get('time_range', {})}")
@@ -62,8 +62,8 @@ else:
 
 # %%
 # Display chunk configuration
-if chunk_config in chunks_config.get('chunk_configs', {}):
-    chunk_info = chunks_config['chunk_configs'][chunk_config]
+if chunk_config in chunks_config.get("chunk_configs", {}):
+    chunk_info = chunks_config["chunk_configs"][chunk_config]
     print(f"\nChunk configuration '{chunk_config}':")
     for dim, size in chunk_info.items():
         print(f"  {dim}: {size}")
@@ -75,7 +75,9 @@ else:
 print("\nProcessing parameters:")
 print(f"Cluster type: {parameters_config.get('cluster', {}).get('default_type', 'N/A')}")
 print(f"Max workers: {parameters_config.get('parallel', {}).get('max_workers', 'N/A')}")
-print(f"Zarr compressor: {parameters_config.get('zarr_encoding', {}).get('compressor', {}).get('cname', 'N/A')}")
+print(
+    f"Zarr compressor: {parameters_config.get('zarr_encoding', {}).get('compressor', {}).get('cname', 'N/A')}"
+)
 
 # %%
 print("\n=== Pipeline Configuration Complete ===")
