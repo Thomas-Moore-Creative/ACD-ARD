@@ -1,0 +1,50 @@
+# Processing parameters for the pipeline
+# Global settings for conversion and rechunking operations
+
+# Dask cluster settings
+cluster:
+  default_type: pbs  # pbs or slurm
+  pbs:
+    queue: normal
+    project: w40
+    walltime: "02:00:00"
+    cores: 4
+    memory: "16GB"
+    job_extra:
+      - "-l storage=gdata/w40+scratch/w40"
+  slurm:
+    queue: normal
+    account: w40
+    walltime: "02:00:00"
+    cores: 4
+    memory: "16GB"
+
+# Zarr encoding parameters
+zarr_encoding:
+  compressor:
+    id: blosc
+    cname: zstd
+    clevel: 3
+    shuffle: 2
+  consolidated: true
+  
+# Rechunking parameters
+rechunking:
+  max_mem: "2GB"
+  temp_store_type: "directory"  # or 'zarr'
+
+# Parallel processing
+parallel:
+  max_workers: 10
+  chunks_per_worker: 2
+
+# Logging
+logging:
+  level: INFO
+  format: "%(asctime)s - %(name)s - %(levelname)s - %(message)s"
+  
+# Papermill notebook execution
+papermill:
+  kernel_name: python3
+  progress_bar: true
+  log_output: true

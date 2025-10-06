@@ -1,0 +1,21 @@
+# Path configurations for ACD-ARD pipeline
+# Adjust these paths according to your HPC environment
+
+# Base path for all data operations
+base_path: /scratch/data
+
+# Input data paths
+input_base_path: /g/data/climate/netcdf
+
+# Output paths
+base_zarr_path: /scratch/data/zarr/base
+rechunked_zarr_path: /scratch/data/zarr/rechunked
+
+# Temporary working directory
+temp_path: /scratch/data/temp
+
+# Manifest files directory
+manifest_path: /scratch/data/manifests
+
+# Logs directory
+logs_path: /scratch/data/logs
