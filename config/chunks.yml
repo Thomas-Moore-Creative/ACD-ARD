@@ -1,0 +1,37 @@
+# Chunk size configurations for different use cases
+# Define chunk patterns optimized for specific access patterns
+
+# Maximum memory per chunk operation
+max_mem: "2GB"
+
+chunk_configs:
+  # Default configuration - balanced for general use
+  default:
+    time: 365
+    lat: 180
+    lon: 360
+  
+  # Time-series optimized - large time chunks for temporal analysis
+  timeseries:
+    time: 3650  # 10 years
+    lat: 50
+    lon: 50
+  
+  # Spatial optimized - large spatial chunks for maps
+  spatial:
+    time: 30  # 1 month
+    lat: 500
+    lon: 500
+  
+  # Small chunks for testing
+  test:
+    time: 10
+    lat: 50
+    lon: 50
+  
+  # Climate model output - typical chunking
+  cmip6:
+    time: 365
+    lat: 144
+    lon: 192
+    lev: 10  # if vertical levels exist
