@@ -1,6 +1,6 @@
 # ACD-ARD
 
-Analysis-ready data workflows (ARD) for Australian Climate Data - primarily large NetCDF collections at NCI.
+Analysis-ready data workflows (ARD) for Australian Climate Data (ACD) - primarily large NetCDF collections at NCI.
 
 This package provides tools for converting NetCDF climate archives to Zarr format using Dask for distributed processing on HPC systems (PBS/Slurm).
 
