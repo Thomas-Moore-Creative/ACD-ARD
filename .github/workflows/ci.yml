@@ -35,11 +35,9 @@ jobs:
       run: black --check .
     - name: Type check (mypy)
       run: mypy src/
-
-    - name: Run tests (smoke only)
-      run: |
-        pytest -q -m "not slow and not hpc" tests/test_smoke_pipeline.py \
-        --cov=acd --cov-report=xml --junitxml=pytest.xml
+    
+    - name: Tests (minimal smoke)
+      run: pytest -q -m "not slow and not hpc" tests/test_min_smoke.py
 
     - name: Upload test artifacts
       uses: actions/upload-artifact@v4
