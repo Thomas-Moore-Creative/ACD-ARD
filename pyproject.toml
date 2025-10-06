@@ -40,10 +40,13 @@ acd-rechunk = "acd.cli.rechunk:main"
 where = ["src"]
 
 [tool.pytest.ini_options]
+minversion = "7.0"
+addopts = "-q -m 'not slow and not hpc'"
 testpaths = ["tests"]
-python_files = ["test_*.py"]
-python_classes = ["Test*"]
-python_functions = ["test_*"]
+markers = [
+  "slow: slow tests (off by default)",
+  "hpc: requires HPC or large data (off by default)"
+]
 
 [tool.ruff]
 line-length = 100

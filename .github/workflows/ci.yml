@@ -30,7 +30,12 @@ jobs:
       run: |
         ruff check src/ tests/
       continue-on-error: true
-    
+
+    - name: Format check (black)
+      run: black --check .
+    - name: Type check (mypy)
+      run: mypy src/
+
     - name: Run tests
       run: |
         pytest tests/ -v --cov=acd --cov-report=term-missing
