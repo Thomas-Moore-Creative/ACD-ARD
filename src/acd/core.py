@@ -7,33 +7,16 @@ import yaml
 
 
 def load_config(config_name: str, config_dir: Optional[Path] = None) -> Dict[str, Any]:
-    """Load a YAML configuration file.
-
-    Args:
-        config_name: Name of the config file (without .yml extension)
-        config_dir: Directory containing config files. Defaults to config/ in package root.
-
-    Returns:
-        Dictionary containing configuration data
-    """
     if config_dir is None:
-        # Default to config directory relative to package
         config_dir = Path(__file__).parent.parent.parent / "config"
-
-    config_path = config_dir / f"{config_name}.yml"
-
-    if not config_path.exists():
-        raise FileNotFoundError(f"Configuration file not found: {config_path}")
-
-    with open(config_path, "r") as f:
-        data = yaml.safe_load(f)
-
-    # yaml.safe_load returns Any; ensure a dict for typing correctness
+    cfg_path = config_dir / f"{config_name}.yml"
+    if not cfg_path.exists():
+        raise FileNotFoundError(f"Configuration file not found: {cfg_path}")
+    data = yaml.safe_load(open(cfg_path))
     if data is None:
         return {}
     if not isinstance(data, dict):
-        raise TypeError(f"Configuration file is not a mapping: {config_path}")
-
+        raise TypeError(f"Configuration file is not a mapping: {cfg_path}")
     return cast(Dict[str, Any], data)
 
 

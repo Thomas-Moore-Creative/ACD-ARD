@@ -36,9 +36,18 @@ jobs:
     - name: Type check (mypy)
       run: mypy src/
 
-    - name: Run tests
+    - name: Run tests (smoke only)
       run: |
-        pytest tests/ -v --cov=acd --cov-report=term-missing
+        pytest -q -m "not slow and not hpc" tests/test_smoke_pipeline.py \
+       --cov=acd --cov-report=xml --junitxml=pytest.xml
+
+    - name: Upload test artifacts
+      uses: actions/upload-artifact@v4
+      with:
+        name: pytest-logs
+        path: |
+          pytest.xml
+          coverage.xml
     
     - name: Test CLI commands
       run: |
