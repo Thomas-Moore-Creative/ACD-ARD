@@ -55,7 +55,7 @@ ignore = ["E501"]
 
 [tool.ruff.lint]
 select = ["E", "F", "I", "W"]
-ignore = []
+ignore = ["E501"]
 
 [tool.black]
 line-length = 100
