@@ -1,4 +1,9 @@
 # ACD-ARD
+[![CI](https://github.com/Thomas-Moore-Creative/ACD-ARD/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/Thomas-Moore-Creative/ACD-ARD/actions/workflows/ci.yml)
+![License](https://img.shields.io/badge/License-MIT-yellow.svg)
+![Python](https://img.shields.io/badge/python-3.11-blue)
+![Last commit](https://img.shields.io/github/last-commit/Thomas-Moore-Creative/ACD-ARD)
+![Issues](https://img.shields.io/github/issues/Thomas-Moore-Creative/ACD-ARD)
 
 Analysis-ready data workflows (ARD) for Australian Climate Data (ACD) - primarily large NetCDF collections at NCI.
 
