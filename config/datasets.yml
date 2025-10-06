@@ -1,4 +1,4 @@
 roots:
-  SYNTH: /scratch/xv83/tm4888/tmp/pytest-of-tm4888/pytest-1/test_smoke0/inputs
+  SYNTH: /scratch/xv83/tm4888/tmp/pytest-of-tm4888/pytest-2/test_smoke0/inputs
 engine:
   SYNTH: h5netcdf

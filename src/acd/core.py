@@ -1,12 +1,12 @@
 """Core utilities for ACD-ARD package."""
 
 from pathlib import Path
-from typing import Any, Dict
+from typing import Any, Dict, Optional, cast
 
 import yaml
 
 
-def load_config(config_name: str, config_dir: Path = None) -> Dict[str, Any]:
+def load_config(config_name: str, config_dir: Optional[Path] = None) -> Dict[str, Any]:
     """Load a YAML configuration file.
 
     Args:
@@ -26,10 +26,18 @@ def load_config(config_name: str, config_dir: Path = None) -> Dict[str, Any]:
         raise FileNotFoundError(f"Configuration file not found: {config_path}")
 
     with open(config_path, "r") as f:
-        return yaml.safe_load(f)
+        data = yaml.safe_load(f)
+
+    # yaml.safe_load returns Any; ensure a dict for typing correctness
+    if data is None:
+        return {}
+    if not isinstance(data, dict):
+        raise TypeError(f"Configuration file is not a mapping: {config_path}")
+
+    return cast(Dict[str, Any], data)
 
 
-def setup_dask_cluster(cluster_type: str = "pbs", **kwargs):
+def setup_dask_cluster(cluster_type: str = "pbs", **kwargs: Any) -> Any:
     """Setup a Dask cluster for HPC systems.
 
     Args:
@@ -43,7 +51,6 @@ def setup_dask_cluster(cluster_type: str = "pbs", **kwargs):
 
     if cluster_type.lower() == "pbs":
         return PBSCluster(**kwargs)
-    elif cluster_type.lower() == "slurm":
+    if cluster_type.lower() == "slurm":
         return SLURMCluster(**kwargs)
-    else:
-        raise ValueError(f"Unsupported cluster type: {cluster_type}")
+    raise ValueError(f"Unsupported cluster type: {cluster_type}")
