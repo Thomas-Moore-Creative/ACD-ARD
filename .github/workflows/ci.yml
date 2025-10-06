@@ -39,7 +39,7 @@ jobs:
     - name: Run tests (smoke only)
       run: |
         pytest -q -m "not slow and not hpc" tests/test_smoke_pipeline.py \
-       --cov=acd --cov-report=xml --junitxml=pytest.xml
+        --cov=acd --cov-report=xml --junitxml=pytest.xml
 
     - name: Upload test artifacts
       uses: actions/upload-artifact@v4
