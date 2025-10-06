@@ -1,45 +1,29 @@
 name: acd_ard
-channels:
-  - conda-forge
-  - defaults
+channels: [conda-forge]
 dependencies:
-  # Python version
-  - python=3.11
-  
-  # Core scientific stack
-  - numpy
-  - pandas
-  - xarray
-  - dask
-  - distributed
-  
-  # HPC job scheduling
-  - dask-jobqueue
-  
-  # NetCDF and Zarr
-  - netcdf4
-  - h5netcdf
-  - zarr
-  - rechunker
-  
-  # Utilities
-  - pyyaml
-  - click
-  - tqdm
-  
-  # Notebook execution
-  - papermill
-  - jupyter
-  - ipykernel
-  
-  # Development tools
-  - pytest
-  - pytest-cov
-  - ruff
-  - black
-  - isort
-  
-  # pip packages
-  - pip
-  - pip:
-    - kerchunk  # for reference file system creation
+- python>=3.11
+- xarray>=2024.6.0
+- dask>=2024.8.0
+- distributed>=2024.8.0
+- zarr>=2.18
+- numcodecs
+- fsspec
+- h5netcdf
+- netcdf4
+- rechunker>=0.5
+- pyyaml
+- pandas
+- pyarrow
+- fastparquet
+- cftime
+- toolz
+- click
+- dask-jobqueue
+- papermill>=2.5
+- ipykernel
+- tqdm
+- pytest
+- pytest-cov
+- ruff
+- black
+- mypy
