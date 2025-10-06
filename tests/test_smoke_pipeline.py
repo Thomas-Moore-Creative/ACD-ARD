@@ -5,6 +5,12 @@ import numpy as np
 import xarray as xr
 import yaml
 
+# ensure package is imported for coverage, regardless of folder name
+try:
+    import acd  # noqa: F401
+except ImportError:
+    import acd_ard as acd  # noqa: F401
+
 
 def test_smoke(tmp_path):
     # ----- 1) tiny inputs -----
@@ -46,14 +52,13 @@ def test_smoke(tmp_path):
     Path("config/datasets.yml").write_text(yaml.safe_dump(datasets, sort_keys=False))
 
     collections = {
-        "collections": [
-            {
-                "name": "synthetic",
+        "collections": {
+            "synthetic": {
                 "dataset": "SYNTH",
                 "variables": ["tas", "pr"],
                 "pattern": "{variable}/*.nc",
             }
-        ]
+        }
     }
     Path("config/collections.yml").write_text(yaml.safe_dump(collections, sort_keys=False))
 
