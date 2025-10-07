@@ -3,7 +3,7 @@ requires = ["setuptools>=65.0", "wheel"]
 build-backend = "setuptools.build_meta"
 
 [project]
-name = "acd"
+name = "acd-ard"
 version = "0.1.0"
 description = "Analysis-ready data workflows for Australian Climate Data - NetCDF to Zarr conversion pipeline"
 readme = "README.md"
