@@ -32,9 +32,8 @@ dev = [
 ]
 
 [project.scripts]
-acd-manifest = "acd.cli.manifest:main"
-acd-base = "acd.cli.base:main"
-acd-rechunk = "acd.cli.rechunk:main"
+acd-ard = "acd_ard.cli:acd_ard"
+
 
 [tool.setuptools.packages.find]
 where = ["src"]
