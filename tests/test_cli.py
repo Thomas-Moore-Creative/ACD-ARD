@@ -2,9 +2,9 @@
 
 from click.testing import CliRunner
 
-from acd.cli.base import main as base_main
-from acd.cli.manifest import main as manifest_main
-from acd.cli.rechunk import main as rechunk_main
+from acd_ard.cli.base import main as base_main
+from acd_ard.cli.manifest import main as manifest_main
+from acd_ard.cli.rechunk import main as rechunk_main
 
 
 def test_manifest_cli_help():

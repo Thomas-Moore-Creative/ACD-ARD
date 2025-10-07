@@ -21,7 +21,7 @@ from pathlib import Path
 sys.path.insert(0, str(Path(__file__).parent.parent / "src"))
 
 # %%
-from acd.core import load_config
+from acd_ard.core import load_config
 
 # %%
 print("=== ACD-ARD Pipeline Example ===")
@@ -82,7 +82,7 @@ print(
 # %%
 print("\n=== Pipeline Configuration Complete ===")
 print("\nNext steps:")
-print("1. Run: acd-manifest --collection", collection_name)
-print("2. Run: acd-base --dataset", dataset_name)
-print("3. Run: acd-rechunk --input <base_zarr> --chunks-config", chunk_config)
+print("1. Run: acd-ard manifest --collection", collection_name)
+print("2. Run: acd-ard base --dataset", dataset_name)
+print("3. Run: acd-ard rechunk --input <base_zarr> --chunks-config", chunk_config)
 print("\nOr use: scripts/run_pipeline.sh to run all steps")

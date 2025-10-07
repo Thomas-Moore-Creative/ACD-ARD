@@ -48,6 +48,6 @@ jobs:
     
     - name: Test CLI commands
       run: |
-        acd-manifest --help
-        acd-base --help
-        acd-rechunk --help
+        acd-ard manifest --help
+        acd-ard base --help
+        acd-ard rechunk --help

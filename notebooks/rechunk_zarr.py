@@ -25,7 +25,7 @@ sys.path.insert(0, str(Path(__file__).parent.parent / "src"))
 import xarray as xr
 from rechunker import rechunk
 
-from acd.core import load_config, setup_dask_cluster
+from acd_ard.core import load_config, setup_dask_cluster
 
 # %%
 print(f"Rechunking store: {input_store}")
