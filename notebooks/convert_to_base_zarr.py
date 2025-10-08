@@ -23,7 +23,7 @@ sys.path.insert(0, str(Path(__file__).parent.parent / "src"))
 # %%
 import xarray as xr
 
-from acd.core import load_config, setup_dask_cluster
+from acd_ard.core import load_config, setup_dask_cluster
 
 # %%
 print(f"Processing dataset: {dataset_name}")

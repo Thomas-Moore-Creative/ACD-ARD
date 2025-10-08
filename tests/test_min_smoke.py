@@ -1,10 +1,7 @@
 from pathlib import Path
 
-# ensure your package is imported (name could be 'acd' or 'acd_ard')
-try:
-    import acd as pkg  # noqa: F401
-except ImportError:      # pragma: no cover
-    import acd_ard as pkg  # noqa: F401
+# ensure your package is imported
+import acd_ard as pkg  # noqa: F401
 
 def test_minimal_zarr_roundtrip(tmp_path: Path):
     # No CLIs, no configs — just verify xarray↔zarr stack works

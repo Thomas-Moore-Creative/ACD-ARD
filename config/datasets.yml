@@ -1,4 +1,6 @@
-roots:
-  SYNTH: /scratch/xv83/tm4888/tmp/pytest-of-tm4888/pytest-6/test_smoke0/inputs
-engine:
-  SYNTH: h5netcdf
+datasets:
+  description: "Roots and engines for ACD-ARD datasets (test config)"
+  roots:
+    SYNTH: /scratch/xv83/tm4888/tmp/pytest-of-tm4888/pytest-6/test_smoke0/inputs
+  engine:
+    SYNTH: h5netcdf

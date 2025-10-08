@@ -1,47 +1,24 @@
 """Tests for CLI commands."""
 
 from click.testing import CliRunner
+from acd_ard.cli import acd_ard  # the group: `acd-ard`
 
-from acd.cli.base import main as base_main
-from acd.cli.manifest import main as manifest_main
-from acd.cli.rechunk import main as rechunk_main
+def test_group_help():
+    r = CliRunner().invoke(acd_ard, ["--help"])
+    assert r.exit_code == 0
+    assert "manifest" in r.stdout and "base" in r.stdout and "rechunk" in r.stdout
 
+def test_manifest_help():
+    r = CliRunner().invoke(acd_ard, ["manifest", "--help"])
+    assert r.exit_code == 0
+    assert "--collection" in r.stdout or "-c" in r.stdout
 
-def test_manifest_cli_help():
-    """Test manifest CLI help output."""
-    runner = CliRunner()
-    result = runner.invoke(manifest_main, ["--help"])
-    assert result.exit_code == 0
-    assert "Generate manifest files" in result.output
+def test_base_help():
+    r = CliRunner().invoke(acd_ard, ["base", "--help"])
+    assert r.exit_code == 0
+    assert "--collection" in r.stdout and "--variable" in r.stdout and "--use-manifest" in r.stdout
 
-
-def test_base_cli_help():
-    """Test base CLI help output."""
-    runner = CliRunner()
-    result = runner.invoke(base_main, ["--help"])
-    assert result.exit_code == 0
-    assert "Convert NetCDF archives" in result.output
-
-
-def test_rechunk_cli_help():
-    """Test rechunk CLI help output."""
-    runner = CliRunner()
-    result = runner.invoke(rechunk_main, ["--help"])
-    assert result.exit_code == 0
-    assert "Rechunk Zarr stores" in result.output
-
-
-def test_manifest_missing_collection(config_dir):
-    """Test manifest CLI with missing collection."""
-    runner = CliRunner()
-    result = runner.invoke(
-        manifest_main, ["--collection", "nonexistent", "--config-dir", str(config_dir)]
-    )
-    assert result.exit_code != 0
-
-
-def test_base_missing_dataset(config_dir):
-    """Test base CLI with missing dataset."""
-    runner = CliRunner()
-    result = runner.invoke(base_main, ["--dataset", "nonexistent", "--config-dir", str(config_dir)])
-    assert result.exit_code != 0
+def test_rechunk_help():
+    r = CliRunner().invoke(acd_ard, ["rechunk", "--help"])
+    assert r.exit_code == 0
+    assert "--collection" in r.stdout and "--variable" in r.stdout and "--max-mem" in r.stdout

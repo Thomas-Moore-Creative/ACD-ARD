@@ -2,7 +2,7 @@
 
 import pytest
 
-from acd.core import load_config, setup_dask_cluster
+from acd_ard.core import load_config, setup_dask_cluster
 
 
 def test_load_config(config_dir):

@@ -7,7 +7,7 @@ import yaml
 
 # ensure package is imported for coverage, regardless of folder name
 try:
-    import acd  # noqa: F401
+    import acd_ard  # noqa: F401
 except ImportError:
     import acd_ard as acd  # noqa: F401
 
@@ -63,11 +63,11 @@ def test_smoke(tmp_path):
     Path("config/collections.yml").write_text(yaml.safe_dump(collections, sort_keys=False))
 
     # ----- 3) run the pipeline -----
-    check_call(["acd-manifest", "--collection", "synthetic"])
-    check_call(["acd-base", "--collection", "synthetic", "--variable", "tas"])
+    check_call(["acd-ard manifest", "--collection", "synthetic"])
+    check_call(["acd-ard base", "--collection", "synthetic", "--variable", "tas"])
     check_call(
         [
-            "acd-rechunk",
+            "acd-ard rechunk",
             "--collection",
             "synthetic",
             "--variable",

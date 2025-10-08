@@ -64,7 +64,7 @@ echo ""
 
 # Step 1: Generate manifest
 echo "Step 1/3: Generating manifest..."
-acd-manifest \
+acd-ard manifest \
     --collection "$COLLECTION" \
     --config-dir "$CONFIG_DIR" \
     --output "${PROJECT_ROOT}/manifests/${COLLECTION}.txt" \
@@ -73,7 +73,7 @@ acd-manifest \
 # Step 2: Convert to base Zarr
 echo ""
 echo "Step 2/3: Converting to base Zarr..."
-acd-base \
+acd-ard base \
     --dataset "$DATASET" \
     --cluster-type "$CLUSTER_TYPE" \
     --workers "$WORKERS" \
@@ -88,7 +88,7 @@ echo "Step 3/3: Rechunking..."
 BASE_ZARR_PATH="${PROJECT_ROOT}/data/base_zarr/${DATASET}"
 
 if [ -d "$BASE_ZARR_PATH" ]; then
-    acd-rechunk \
+    acd-ard rechunk \
         --input "$BASE_ZARR_PATH" \
         --chunks-config "$CHUNK_CONFIG" \
         --cluster-type "$CLUSTER_TYPE" \

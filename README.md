@@ -73,31 +73,14 @@ rechunked_zarr_path: /scratch/data/zarr/rechunked
 
 ## CLI Commands
 
-### acd-manifest
-
-Generate manifest files for NetCDF collections:
+All commands are under the **acd-ard** umbrella:
 
 ```bash
-acd-manifest --collection nci_temperature --output manifests/temp.txt
-```
-
-### acd-base
-
-Convert NetCDF archives to base Zarr format:
-
-```bash
-acd-base --dataset example_temp_daily --cluster-type pbs --workers 8
-```
-
-### acd-rechunk
-
-Rechunk Zarr stores with custom chunk sizes:
-
-```bash
-acd-rechunk \
-  --input data/base_zarr/example_temp_daily \
-  --chunks-config timeseries \
-  --cluster-type pbs
+acd-ard --version
+acd-ard --help
+acd-ard manifest -c synthetic
+acd-ard base -c synthetic -v tas --use-manifest
+acd-ard rechunk -c synthetic -v tas --max-mem 16GB
 ```
 
 ## Configuration

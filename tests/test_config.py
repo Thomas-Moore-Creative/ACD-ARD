@@ -10,12 +10,15 @@ def test_paths_config_structure(config_dir):
         config = yaml.safe_load(f)
 
     required_keys = [
-        "base_path",
-        "base_zarr_path",
-        "rechunked_zarr_path",
-        "temp_path",
-        "manifest_path",
-        "logs_path",
+        "project_root",
+        "scratch_root",
+        "manifests",
+        "logs",
+        "notebooks",
+        "zarr_base",
+        "zarr_ard",
+        "rechunk_tmp",
+        "dask_spill",
     ]
 
     for key in required_keys:

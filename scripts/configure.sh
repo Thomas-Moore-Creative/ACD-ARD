@@ -29,9 +29,9 @@ else
 fi
 
 # Check if package is installed
-if python -c "import acd" 2>/dev/null; then
+if python -c "import acd_ard" 2>/dev/null; then
     echo "ACD package is installed"
-    python -c "import acd; print(f'Version: {acd.__version__}')"
+    python -c "import acd_ard; print(f'Version: {acd_ard.__version__}')"
 else
     echo "Warning: ACD package not installed"
     echo "Install with: pip install -e ."
@@ -52,7 +52,7 @@ done
 # Check CLI commands
 echo ""
 echo "Checking CLI commands..."
-for cmd in acd-manifest acd-base acd-rechunk; do
+for cmd in acd-ard manifest acd-ard base acd-ard rechunk; do
     if command -v "$cmd" &> /dev/null; then
         echo "✓ $cmd available"
     else
