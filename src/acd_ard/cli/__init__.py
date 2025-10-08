@@ -16,7 +16,7 @@ def _get_version() -> str:
             pass
     # Fallback to module attr if defined, else a dev marker
     try:
-        from .. import __version__  # type: ignore
+        from .. import __version__
         return __version__
     except Exception:
         return "0.0.0+local"
