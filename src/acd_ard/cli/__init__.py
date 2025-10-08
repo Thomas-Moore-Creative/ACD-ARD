@@ -27,7 +27,8 @@ def _get_version() -> str:
 )
 @click.version_option(version=_get_version(), prog_name="acd-ard")
 def acd_ard() -> None:
-
+    """ACD-ARD command group (top-level CLI group)."""
+    pass
 # Subcommands stay short; users invoke via `acd-ard …`
 acd_ard.add_command(manifest, name="manifest")
 acd_ard.add_command(base, name="base")

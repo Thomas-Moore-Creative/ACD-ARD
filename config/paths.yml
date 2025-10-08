@@ -1,9 +1,12 @@
-project_root: /scratch/xv83/tm4888/tmp/pytest-of-tm4888/pytest-6/test_smoke0/proj
-scratch_root: /scratch/xv83/tm4888/tmp/pytest-of-tm4888/pytest-6/test_smoke0/scratch
-manifests: /scratch/xv83/tm4888/tmp/pytest-of-tm4888/pytest-6/test_smoke0/proj/manifests
-logs: /scratch/xv83/tm4888/tmp/pytest-of-tm4888/pytest-6/test_smoke0/proj/logs
-notebooks: /scratch/xv83/tm4888/tmp/pytest-of-tm4888/pytest-6/test_smoke0/proj/notebooks
-zarr_base: /scratch/xv83/tm4888/tmp/pytest-of-tm4888/pytest-6/test_smoke0/scratch/zarr/base
-zarr_custom: /scratch/xv83/tm4888/tmp/pytest-of-tm4888/pytest-6/test_smoke0/scratch/zarr/custom
-rechunk_tmp: /scratch/xv83/tm4888/tmp/pytest-of-tm4888/pytest-6/test_smoke0/scratch/tmp_rechunk
-dask_spill: /scratch/xv83/tm4888/tmp/pytest-of-tm4888/pytest-6/test_smoke0/scratch/dask/worker-spill
+# config/paths.yml
+project_root: "/g/data/es60/users/thomas_moore/code/ACD/ACD-ARD"
+scratch_root: "/scratch/es60/thomas_moore/ACD-ARD"
+
+manifests:    "${project_root}/manifests"
+logs:         "${project_root}/logs"
+notebooks:    "${project_root}/notebooks"
+
+zarr_base:    "${scratch_root}/zarr/base"
+zarr_ard:  "${scratch_root}/zarr/ard"
+rechunk_tmp:  "${scratch_root}/tmp_rechunk"
+dask_spill:   "${scratch_root}/dask/worker-spill"
