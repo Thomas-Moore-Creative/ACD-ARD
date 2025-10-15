@@ -29,6 +29,9 @@ dev = [
     "pytest",
     "pytest-cov",
     "ruff",
+    "black",
+    "mypy",
+    "types-PyYAML",
 ]
 
 [project.scripts]
@@ -64,7 +67,7 @@ target-version = ["py311"]
 
 [tool.mypy]
 python_version = "3.11"
-packages = ["acd"]
+packages = ["acd_ard"]
 ignore_missing_imports = true
 strict_optional = true
 warn_unused_ignores = true
