@@ -27,3 +27,10 @@ def test_rechunk_help():
     r = CliRunner().invoke(acd_ard, ["rechunk", "--help"])
     assert r.exit_code == 0
     assert "--collection" in r.stdout and "--variable" in r.stdout and "--max-mem" in r.stdout
+
+
+def test_version_option():
+    r = CliRunner().invoke(acd_ard, ["--version"])
+    # exit code 0 and program name present
+    assert r.exit_code == 0
+    assert "acd-ard" in r.stdout or "0.0.0" in r.stdout
