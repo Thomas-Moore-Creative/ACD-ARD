@@ -1,5 +1,7 @@
 import sys
+
 import click
+
 
 @click.command(
     help="acd-ard: rechunk a base Zarr into a custom-chunked Zarr.",

@@ -7,7 +7,9 @@ Safe sweep: acd -> acd_ard and CLI acd-* -> acd-ard <subcmd>.
 - Dry-run by default
 """
 from __future__ import annotations
-import argparse, re
+
+import argparse
+import re
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -28,22 +30,22 @@ REPLACES = [
     (re.compile(r"\bfrom\s+acd(\s+import\b)"), r"from acd_ard\1"),
     (re.compile(r"\bimport\s+acd(\s+as\s+\w+)?\b"), r"import acd_ard\1"),
     (re.compile(r"\bacd\."), r"acd_ard."),
-
     # pyproject/toml module paths
     (re.compile(r'"acd\.cli\.'), r'"acd_ard.cli.'),
     (re.compile(r"= 'acd\.cli\."), r"= 'acd_ard.cli."),
-
     # CLI calls in docs/scripts/tests -> umbrella form
     (re.compile(r"\bacd-manifest\b"), r"acd-ard manifest"),
-    (re.compile(r"\bacd-base\b"),     r"acd-ard base"),
-    (re.compile(r"\bacd-rechunk\b"),  r"acd-ard rechunk"),
+    (re.compile(r"\bacd-base\b"), r"acd-ard base"),
+    (re.compile(r"\bacd-rechunk\b"), r"acd-ard rechunk"),
 ]
+
 
 def iter_files():
     for pattern in GLOBS:
         for p in ROOT.glob(pattern):
             if p.is_file():
                 yield p
+
 
 def main(dry_run: bool):
     changed = []
@@ -68,6 +70,7 @@ def main(dry_run: bool):
         print("no changes needed.")
     else:
         print(f"{'would update' if dry_run else 'updated'} {len(changed)} files.")
+
 
 if __name__ == "__main__":
     ap = argparse.ArgumentParser()

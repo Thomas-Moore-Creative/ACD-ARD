@@ -1,5 +1,7 @@
 import sys
+
 import click
+
 
 @click.command(
     help="acd-ard: build parquet manifest(s) of input NetCDF files.",

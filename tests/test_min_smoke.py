@@ -3,6 +3,7 @@ from pathlib import Path
 # ensure your package is imported
 import acd_ard as pkg  # noqa: F401
 
+
 def test_minimal_zarr_roundtrip(tmp_path: Path):
     # No CLIs, no configs — just verify xarray↔zarr stack works
     import numpy as np

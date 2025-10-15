@@ -1,11 +1,13 @@
 """CLI utilities for ACD commands."""
 
-import click
 from importlib.metadata import PackageNotFoundError, version
 
-from .manifest import manifest
+import click
+
 from .base import base
+from .manifest import manifest
 from .rechunk import rechunk
+
 
 def _get_version() -> str:
     # Try the distribution names first (hyphen is the canonical project name)
@@ -17,9 +19,11 @@ def _get_version() -> str:
     # Fallback to module attr if defined, else a dev marker
     try:
         from .. import __version__
+
         return __version__
     except Exception:
         return "0.0.0+local"
+
 
 @click.group(
     help="ACD-ARD: Australian Climate Data — Analysis-Ready Data tools.",
@@ -29,8 +33,9 @@ def _get_version() -> str:
 def acd_ard() -> None:
     """ACD-ARD command group (top-level CLI group)."""
     pass
+
+
 # Subcommands stay short; users invoke via `acd-ard …`
 acd_ard.add_command(manifest, name="manifest")
 acd_ard.add_command(base, name="base")
 acd_ard.add_command(rechunk, name="rechunk")
-

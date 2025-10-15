@@ -6,7 +6,11 @@ manifests:    "${project_root}/manifests"
 logs:         "${project_root}/logs"
 notebooks:    "${project_root}/notebooks"
 
-zarr_base:    "${scratch_root}/zarr/base"
-zarr_ard:  "${scratch_root}/zarr/ard"
-rechunk_tmp:  "${scratch_root}/tmp_rechunk"
-dask_spill:   "${scratch_root}/dask/worker-spill"
+# Common aliases used by code/tests
+base_path:     "${scratch_root}"
+base_zarr_path: "${scratch_root}/zarr/base"
+
+zarr_base:     "${scratch_root}/zarr/base"
+zarr_ard:      "${scratch_root}/zarr/ard"
+rechunk_tmp:   "${scratch_root}/tmp_rechunk"
+dask_spill:    "${scratch_root}/dask/worker-spill"
