@@ -5,20 +5,16 @@ Local development
 - Use `dask.distributed.LocalCluster` for testing and small jobs.
 - Configure `n_workers`, `threads_per_worker`, and memory per worker to match local machine.
 
-HPC / jobqueue
+HPC
 
-- Use `dask-jobqueue` (PBS, SLURM, etc.) when running on a cluster; keep resource profiles in a config file.
-- Request sufficient walltime and memory; oversubscribe CPU only when IO-bound.
+- HPC will be ARE-based jupyter notebook prototypes that will be made operational and CLI-ready using papermill
+- Use `dask.distributed.LocalCluster`
+- Configure `n_workers`, `threads_per_worker`, and memory per worker to match local machine.
 
-Chunking and task graph planning
+Chunking
 
-- Rechunk only when necessary; plan intermediate chunk sizes.
-- Use `dask.array`/`xarray` diagnostics to inspect task graph and estimate intermediate storage requirements.
-
-Monitoring and logging
-
-- Enable the dashboard for long-running jobs; capture worker logs to central location.
-- Set `distributed.comm.timeouts` and retry settings for flaky clusters.
+- Rechunking will be a core function of this codebase.
+- Settings should be controlled via a config
 
 Best practices
 
@@ -30,3 +26,18 @@ Reproducibility
 
 - Pin dask and distributed versions for experiments; record the environment in job logs.
 - Use dask config files for cluster profiles in repo under `config/`.
+
+Quick LocalCluster example
+
+```python
+# start a minimal local cluster for testing
+from acd_ard.core import start_cluster_from_config
+
+client, cluster = start_cluster_from_config(local=True, n_workers=1, threads_per_worker=1)
+# run work
+fut = client.submit(lambda: 1 + 1)
+assert fut.result() == 2
+# cleanup
+client.close()
+cluster.close()
+```
