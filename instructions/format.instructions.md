@@ -19,6 +19,16 @@
 - `black .`
 - `ruff check .` to confirm no remaining issues
 
-## Pre-commit
+## Pre-commit (disabled)
 
-- Add pre-commit hooks to run ruff/black locally for convenience.
+- currently NOT enabled
+- quick commands to enable pre-commit in the future:
+
+    Add .pre-commit-config.yaml (ruff + black).
+    Install & enable locally:
+
+    ```
+    pip install pre-commit
+    pre-commit install
+    pre-commit run --all-files
+    ```
